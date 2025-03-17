@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class Login {
     public boolean validateUser(String username, String password) {
-        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM admin WHERE username = ? AND password = ?";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -17,7 +17,7 @@ public class Login {
             stmt.setString(2, password);
 
             try (ResultSet rs = stmt.executeQuery()) {
-                return rs.next(); // Returns true if a matching record is found
+                return rs.next();  
             }
 
         } catch (SQLException e) {

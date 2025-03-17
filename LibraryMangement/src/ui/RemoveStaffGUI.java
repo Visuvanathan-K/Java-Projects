@@ -15,12 +15,10 @@ public class RemoveStaffGUI extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(2, 2, 10, 10));
 
-        // Label and text field
         add(new JLabel("Staff ID:"));
         staffIdField = new JTextField();
         add(staffIdField);
 
-        // Buttons
         JButton removeButton = new JButton("Remove Staff");
         removeButton.addActionListener(new RemoveStaffListener());
         add(removeButton);
@@ -43,11 +41,11 @@ public class RemoveStaffGUI extends JFrame {
             }
 
             RemoveStaff removeStaff = new RemoveStaff();
-            if (removeStaff.removeStaff(staffId)) {
+            if (removeStaff.removeStaff(Integer.parseInt(staffId))) {
                 JOptionPane.showMessageDialog(null, "Staff removed successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Failed to remove the staff. Please check the Staff ID.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Failed to remove the staff. Check Staff ID.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -56,3 +54,4 @@ public class RemoveStaffGUI extends JFrame {
         new RemoveStaffGUI();
     }
 }
+

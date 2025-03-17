@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             try {
-                // Display the Login Page first
+                // Start with the Login Page
                 new LoginPage();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -14,4 +14,3 @@ public class Main {
         });
     }
 }
-

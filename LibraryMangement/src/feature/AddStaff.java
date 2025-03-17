@@ -6,22 +6,21 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class AddStaff {
-    public boolean addStaff(String staffId, String name, String role, String email) {
-        String query = "INSERT INTO staff (staff_id, name, role, email) VALUES (?, ?, ?, ?)";
+    public boolean addStaff(String name, String role, String contactInfo) {
+        String query = "INSERT INTO staff (name, role, contact_info) VALUES (?, ?, ?)";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setString(1, staffId);
-            stmt.setString(2, name);
-            stmt.setString(3, role);
-            stmt.setString(4, email);
+            stmt.setString(1, name);
+            stmt.setString(2, role);
+            stmt.setString(3, contactInfo);
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
 
         } catch (SQLException e) {
-            System.err.println("Error while adding the staff: " + e.getMessage());
+            System.err.println("Error while adding staff: " + e.getMessage());
             return false;
         }
     }

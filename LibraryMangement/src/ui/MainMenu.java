@@ -4,15 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainMenu extends JFrame {
-  
-
-	public MainMenu() {
+    public MainMenu() {
         setTitle("Library Management System - Main Menu");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(5, 1, 10, 10));
+        setLayout(new GridLayout(6, 1, 10, 10));
 
-        // Buttons for different features
         JButton addBookButton = new JButton("Add Book");
         addBookButton.addActionListener(e -> new AddBookGUI());
         add(addBookButton);
@@ -33,10 +30,17 @@ public class MainMenu extends JFrame {
         removeStaffButton.addActionListener(e -> new RemoveStaffGUI());
         add(removeStaffButton);
 
+        JButton logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(e -> {
+            dispose();
+            new LoginPage();
+        });
+        add(logoutButton);
+
         setVisible(true);
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new MainMenu());
+        new MainMenu();
     }
 }

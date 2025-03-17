@@ -7,18 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddStaffGUI extends JFrame {
-    private JTextField staffIdField, nameField, roleField, emailField;
+    private JTextField nameField, roleField, contactField;
 
     public AddStaffGUI() {
         setTitle("Add Staff");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(new GridLayout(5, 2, 10, 10));
-
-        // Labels and text fields
-        add(new JLabel("Staff ID:"));
-        staffIdField = new JTextField();
-        add(staffIdField);
+        setLayout(new GridLayout(4, 2, 10, 10));
 
         add(new JLabel("Name:"));
         nameField = new JTextField();
@@ -28,11 +23,10 @@ public class AddStaffGUI extends JFrame {
         roleField = new JTextField();
         add(roleField);
 
-        add(new JLabel("Email:"));
-        emailField = new JTextField();
-        add(emailField);
+        add(new JLabel("Contact Info:"));
+        contactField = new JTextField();
+        add(contactField);
 
-        // Buttons
         JButton addButton = new JButton("Add Staff");
         addButton.addActionListener(new AddStaffListener());
         add(addButton);
@@ -47,13 +41,12 @@ public class AddStaffGUI extends JFrame {
     private class AddStaffListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            String staffId = staffIdField.getText();
             String name = nameField.getText();
             String role = roleField.getText();
-            String email = emailField.getText();
+            String contact = contactField.getText();
 
             AddStaff addStaff = new AddStaff();
-            if (addStaff.addStaff(staffId, name, role, email)) {
+            if (addStaff.addStaff(name, role, contact)) {
                 JOptionPane.showMessageDialog(null, "Staff added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
             } else {

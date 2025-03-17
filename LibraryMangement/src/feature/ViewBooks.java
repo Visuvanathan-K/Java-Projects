@@ -1,39 +1,39 @@
 package feature;
 
 import database.Database;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ViewBooks {
-
-    public void displayAllBooks() {
+    public String displayBooks() {
+        StringBuilder bookList = new StringBuilder();
         String query = "SELECT * FROM books";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
 
-            System.out.println("Library Books:");
-            System.out.println("ID\tTitle\tAuthor\tQuantity");
+            bookList.append("ID\tTitle\tAuthor\tGenre\tQuantity\tAvailable\n");
+            bookList.append("--------------------------------------------------------\n");
 
             while (rs.next()) {
-                String bookId = rs.getString("book_id");
-                String title = rs.getString("title");
-                String author = rs.getString("author");
-                int quantity = rs.getInt("quantity");
-
-                System.out.println(bookId + "\t" + title + "\t" + author + "\t" + quantity);
+                bookList.append(
+                        rs.getInt("book_id")).append("\t")
+                        .append(rs.getString("title")).append("\t")
+                        .append(rs.getString("author")).append("\t")
+                        .append(rs.getString("genre")).append("\t")
+                        .append(rs.getInt("quantity")).append("\t")
+                        .append(rs.getBoolean("availability_status") ? "Yes" : "No")
+                        .append("\n");
             }
 
         } catch (SQLException e) {
-            System.err.println("Error retrieving books: " + e.getMessage());
+            bookList.append("Error retrieving books: ").append(e.getMessage());
         }
-    }
 
-	public String fetchBooksForGUI() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+        return bookList.toString();  // Return the formatted data
+    }
 }

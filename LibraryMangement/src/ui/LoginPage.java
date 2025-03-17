@@ -16,7 +16,6 @@ public class LoginPage extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(3, 2, 10, 10));
 
-        // Labels and input fields
         add(new JLabel("Username:"));
         usernameField = new JTextField();
         add(usernameField);
@@ -25,7 +24,6 @@ public class LoginPage extends JFrame {
         passwordField = new JPasswordField();
         add(passwordField);
 
-        // Buttons
         JButton loginButton = new JButton("Login");
         loginButton.addActionListener(new LoginListener());
         add(loginButton);
@@ -46,7 +44,6 @@ public class LoginPage extends JFrame {
             Login login = new Login();
             if (login.validateUser(username, password)) {
                 JOptionPane.showMessageDialog(null, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                // Transition to the main menu or another screen
                 dispose();
                 new MainMenu();
             } else {
@@ -59,3 +56,4 @@ public class LoginPage extends JFrame {
         new LoginPage();
     }
 }
+

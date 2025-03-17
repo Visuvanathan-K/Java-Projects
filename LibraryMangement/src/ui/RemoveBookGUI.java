@@ -15,12 +15,10 @@ public class RemoveBookGUI extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(2, 2, 10, 10));
 
-        // Label and text field
         add(new JLabel("Book ID:"));
         bookIdField = new JTextField();
         add(bookIdField);
 
-        // Buttons
         JButton removeButton = new JButton("Remove Book");
         removeButton.addActionListener(new RemoveBookListener());
         add(removeButton);
@@ -43,11 +41,11 @@ public class RemoveBookGUI extends JFrame {
             }
 
             RemoveBook removeBook = new RemoveBook();
-            if (removeBook.removeBook(bookId)) {
+            if (removeBook.removeBook(Integer.parseInt(bookId))) {
                 JOptionPane.showMessageDialog(null, "Book removed successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Failed to remove the book. Please check the Book ID.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Failed to remove the book. Check Book ID.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -56,3 +54,4 @@ public class RemoveBookGUI extends JFrame {
         new RemoveBookGUI();
     }
 }
+
