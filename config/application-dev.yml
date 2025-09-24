@@ -1,0 +1,22 @@
+server.port: 7000
+
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/bookstore?rewriteBatchedStatements=true
+    username: root
+    password: " "
+
+    jpa:
+      show-sql: true
+      database: mariadb
+      hibernate:
+
+        ddl-auto: update
+
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 1000
+        order_inserts: true
+        order_updates: true
+        generate_statistics: true
